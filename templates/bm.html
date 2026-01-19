@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dashboard BM</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 15px;
+            background: #f0f2f5;
+        }
+
+        .card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .bar-bg {
+            background: #ddd;
+            height: 15px;
+            border-radius: 10px;
+        }
+
+        .bar-fill {
+            background: #27ae60;
+            height: 100%;
+            border-radius: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>📊 Dashboard Cabang</h2>
+    <div class="card">
+        <h3>Target vs Realisasi Sales</h3>
+        <table>
+            <tr>
+                <th>Nama</th>
+                <th>Realisasi</th>
+                <th>Target</th>
+            </tr>
+            {% for row in list_tm %}
+            <tr>
+                <td>{{ row['nama_user'].upper() }}</td>
+                <td>Rp {{ "{:,.0f}".format(row['realisasi_sales'] or 0) }}</td>
+                <td>Rp {{ "{:,.0f}".format(row['target_sales'] or 0) }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <br>
+        <a href="/set_target">⚙️ Atur Target Tim</a>
+    </div>
+
+    <div class="card">
+        <h3>Rekap Tagihan AO</h3>
+        <table>
+            <tr>
+                <th>Nama AO</th>
+                <th>Status</th>
+                <th>Jumlah</th>
+            </tr>
+            {% for row in list_ao %}
+            <tr>
+                <td>{{ row['nama_ao'].upper() }}</td>
+                <td>{{ row['status_tagihan'] }}</td>
+                <td>{{ row['jml'] }} Nasabah</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <a href="/">Kembali</a>
+</body>
+
+</html>

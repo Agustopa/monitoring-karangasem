@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Input Sales</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            background: #f4f7f6;
+        }
+
+        nav {
+            background: #2c3e50;
+            padding: 15px;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        input {
+            padding: 10px;
+            margin-bottom: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #2ecc71;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <a href="/dashboard">📊 DASHBOARD</a>
+        <a href="/crm">📝 CRM</a>
+        <a href="/sales">💰 SALES</a>
+        <a href="/set_target">⚙️ TARGET</a>
+    </nav>
+    <div class="container">
+        <h2>Input Penjualan (Closing)</h2>
+        <form method="POST">
+            <input type="text" name="nama_tm" placeholder="Nama TM" required>
+            <input type="text" name="nama_konsumen" placeholder="Nama Konsumen" required>
+
+            <input type="text" name="alamat" placeholder="Alamat Konsumen" required>
+
+            <input type="text" name="no_telp" placeholder="No Telp/WA" required>
+            <input type="number" name="nominal" placeholder="Nominal Rp (Contoh: 500000)" required>
+            <button type="submit">SIMPAN DATA SALES</button>
+        </form>
+
+        <h3>Data Penjualan Terakhir</h3>
+        <table>
+            <tr>
+                <th>TM</th>
+                <th>Konsumen</th>
+                <th>Nominal</th>
+                <th>Aksi</th>
+            </tr>
+            {% for s in data %}
+            <tr>
+                <td>{{ s['nama_tm'] }}</td>
+                <td>{{ s['nama_konsumen'] }}</td>
+                <td>Rp {{ "{:,.0f}".format(s['nominal']) }}</td>
+                <td><a href="/hapus_sales/{{ s['id'] }}" onclick="return confirm('Hapus data sales?')"
+                        style="color:red;">Hapus</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+
+</html>

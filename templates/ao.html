@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Input AO</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <h2>Laporan Tagihan AO</h2>
+    <form method="POST">
+        <select name="nama_ao" required>
+            <option value="santiawan">SANTIAWAN</option>
+            <option value="sujana">SUJANA</option>
+            <option value="ari_artawan">ARI ARTAWAN</option>
+        </select><br><br>
+        <input type="text" name="nama_nasabah" placeholder="Nama Nasabah" required><br><br>
+        <select name="status">
+            <option value="Lancar">Lancar</option>
+            <option value="NPL">NPL</option>
+            <option value="Macet">Macet</option>
+        </select><br><br>
+        <button type="submit">SIMPAN LAPORAN</button>
+    </form>
+    <br><a href="/">Kembali</a>
+</body>
+
+</html>
